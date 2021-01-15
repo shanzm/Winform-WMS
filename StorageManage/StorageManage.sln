@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageManage", "StorageManage\StorageManage.csproj", "{40D803E7-B5B5-411F-ADE7-DC3B0BD9B34A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daniel.Liu.DAO", "DAO\Daniel.Liu.DAO.csproj", "{CC0DBE40-88E7-4099-8E78-297DC46CB8B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageManageLibrary", "StorageManageLibrary\StorageManageLibrary.csproj", "{E4FEECF7-DBC8-4DBA-B0D6-54D0F1471277}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40D803E7-B5B5-411F-ADE7-DC3B0BD9B34A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D803E7-B5B5-411F-ADE7-DC3B0BD9B34A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D803E7-B5B5-411F-ADE7-DC3B0BD9B34A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D803E7-B5B5-411F-ADE7-DC3B0BD9B34A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC0DBE40-88E7-4099-8E78-297DC46CB8B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0DBE40-88E7-4099-8E78-297DC46CB8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0DBE40-88E7-4099-8E78-297DC46CB8B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0DBE40-88E7-4099-8E78-297DC46CB8B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4FEECF7-DBC8-4DBA-B0D6-54D0F1471277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4FEECF7-DBC8-4DBA-B0D6-54D0F1471277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4FEECF7-DBC8-4DBA-B0D6-54D0F1471277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4FEECF7-DBC8-4DBA-B0D6-54D0F1471277}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

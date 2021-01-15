@@ -1,0 +1,1152 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Daniel.Liu.DAO</name>
+    </assembly>
+    <members>
+        <member name="T:Daniel.Liu.DAO.CommonDataConfig">
+            <summary>
+            作者：刘志彬(Daniel Liu)
+            作用：设置数据库默认连接字符串的配置类。
+            日期：2005-04-24
+            </summary>
+        </member>
+        <member name="F:Daniel.Liu.DAO.CommonDataConfig.ConnectionDefaultStr">
+            <summary>
+            数据库连接字符串
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonDataConfig.#ctor">
+            <summary>
+            CommonDataConfig
+            </summary>
+        </member>
+        <member name="T:Daniel.Liu.DAO.CommonSql">
+            <summary>
+            作者：刘志彬(Daniel Liu)
+            作用：Sql Server的数据库连结方式的类。
+            日期：2005-04-24
+            </summary>
+        </member>
+        <member name="T:Daniel.Liu.DAO.CommonInterface">
+            <summary>
+            作者：刘志彬(Daniel Liu)
+            作用：对数据库通用操作的接口。
+            日期：2005-04-24
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.BeginTrans">
+            <summary>
+            开始一个事务
+            </summary>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            //
+            //进行一些数据访问操作的代码
+            //
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.CommitTrans">
+            <summary>
+            提交一个事务
+            </summary>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            //
+            //进行一些数据访问操作的代码
+            //
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.RollbackTrans">
+            <summary>
+            回滚一个事务
+            </summary>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            try
+            {
+            		//
+            		//进行一些数据访问操作的代码
+            		//
+            
+            		//提交本次的事务
+            		pComm.CommitTrans();
+            		
+            		//关闭数据库连结
+            		pComm.Close();
+            }
+            catch(Exception ex)
+            {
+            		//
+            		//自己的处理
+            		//
+            		
+            		//回滚此次数据操作
+            		pComm.RollbackTrans();
+            		
+            		//关闭数据库连结
+            		pComm.Close();
+            }
+            	
+            </code>
+            </example>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.Execute(System.String)">
+            <summary>
+            执行SQL语句
+            </summary>
+            <param name="sql">SQL语句</param>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            //进行一些数据访问操作的代码
+            string pSql="";
+            
+            pSql="select * from YourTable";
+            
+            //执行此次数据操作
+            pComm.Execute(pSql);
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>		
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExeForDst(System.String,System.String)">
+            <summary>
+            执行SQL语句，填充到指定的DataTable中，返回DataSet
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="strTable">DataTable的名称</param>
+            <returns>DataSet数据集和</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExeForDst(System.String)">
+            <summary>
+            执行一段SQL语句，返回DataSet结果集
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>DataSet结果集</returns>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            string pSql="";
+            DataSet pDst=new DataSet();
+            
+            //进行一些数据访问操作的代码
+            pSql="select * from YourTable";
+            
+            //执行此次数据操作
+            pDst=pComm.ExeForDst(pSql);
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>		
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExeForDtl(System.String,System.String)">
+            <summary>
+            执行SQL语句，返回DataTable
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="TableName">DataTable的名称</param>
+            <returns>DataTable的结果集</returns>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            string pSql="";
+            DataTable pDst=new DataTable();
+            
+            //进行一些数据访问操作的代码
+            pSql="select * from YourTable";
+            
+            //执行此次数据操作
+            pDst=pComm.ExeForDtl(pSql,"UserInfo");
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>			
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExeForDtl(System.String)">
+            <summary>
+            执行SQL语句，返回默认DataTable
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>DataTable结果集</returns>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            string pSql="";
+            DataTable pDst=new DataTable();
+            
+            //进行一些数据访问操作的代码
+            pSql="select * from YourTable";
+            
+            //执行此次数据操作
+            pDst=pComm.ExeForDtl(pSql);
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>	
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExeForDtr(System.String)">
+            <summary>
+            执行SQL语句，返回IDataReader接口
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>IDataReader接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.GetCommand">
+            <summary>
+            返回IDbCommand接口
+            </summary>
+            <returns>IDbCommand接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.Open">
+            <summary>
+            打开数据库连接
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.Close">
+            <summary>
+            关闭数据库连接
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExecuteNonQuery(System.String,System.String[],System.String[])">
+            <summary>
+            用来执行带有参数的SQL语句（不是存储过程）
+            </summary>
+            <param name="SQLText">带有参数的SQL语句</param>
+            <param name="Parameters">传递的参数列表</param>
+            <param name="ParametersValue">同参数列表对应的参数值列表</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExecuteSqls(System.String[])">
+            <summary>
+            执行多sql语句
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExeForFillDst(System.String,System.Data.DataSet,System.String)">
+            <summary>
+            执行一段SQL语句，返回DataSet结果集
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="pDS">指定DataSet</param>
+            <param name="pTableName">pTableName</param>
+            <returns>DataSet结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExecuteSP(System.String,System.String[],System.String[],System.String[])">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="StoredProcedureName">存储过程的名称</param>
+            <param name="Parameters">传递的参数列表</param>
+            <param name="ParametersValue">同参数列表对应的参数值列表</param>
+            <param name="ParametersType">同参数列表对应的参数类型列表</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExecuteSP(System.String,System.String[],System.Object[])">
+            <summary>
+            执行存储过程返回bool
+            </summary>
+            <param name="StoredProcedureName">存储过程名</param>
+            <param name="ParametersNames">数组参数名</param>
+            <param name="ParametersValue">数组参数值</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExecuteSPForDtl(System.String,System.String[],System.Object[])">
+            <summary>
+            执行存储过程返回DataTable
+            </summary>
+            <param name="StoredProcedureName">存储过程名</param>
+            <param name="ParametersNames">数组参数名</param>
+            <param name="ParametersValue">数组参数值</param>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExcuteSp(System.String,System.String[0:,0:])">
+            <summary>
+             执行存储过程,得到结果集DataSet
+             </summary>
+             <param name="sqname">存储过程名称</param>
+             <param name="array">参数名称与值的数组</param>
+             <returns>返回True或False</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.ExecuteScalar(System.String)">
+            <summary>
+            执行sql语句返回第一行第一列的值
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.getDataAdapter(System.String)">
+            <summary>
+            getDataAdapter
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonInterface.getCommandBuilder">
+            <summary>
+            getCommandBuilder
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.#ctor">
+            <summary>
+            构造方法
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.#ctor(System.String)">
+            <summary>
+            带有参数的构造方法
+            </summary>
+            <param name="ConnStr_Param">数据库连接字符串</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.Initial">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.BeginTrans">
+            <summary>
+            开始一个事务
+            </summary>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            //
+            //进行一些数据访问操作的代码
+            //
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.CommitTrans">
+            <summary>
+            提交一个事务
+            </summary>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            //
+            //进行一些数据访问操作的代码
+            //
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.RollbackTrans">
+            <summary>
+            回滚一个事务
+            </summary>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            try
+            {
+            		//
+            		//进行一些数据访问操作的代码
+            		//
+            
+            		//提交本次的事务
+            		pComm.CommitTrans();
+            		
+            		//关闭数据库连结
+            		pComm.Close();
+            }
+            catch(Exception ex)
+            {
+            		//
+            		//自己的处理
+            		//
+            		
+            		//回滚此次数据操作
+            		pComm.RollbackTrans();
+            		
+            		//关闭数据库连结
+            		pComm.Close();
+            }
+            	
+            </code>
+            </example>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.Execute(System.String)">
+            <summary>
+            执行SQL语句
+            </summary>
+            <param name="sql">SQL语句</param>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            //进行一些数据访问操作的代码
+            string pSql="";
+            
+            pSql="select * from YourTable";
+            
+            //执行此次数据操作
+            pComm.Execute(pSql);
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>		
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExeForDst(System.String,System.String)">
+            <summary>
+            执行SQL语句，填充到指定的DataTable中，返回DataSet
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="strTable">DataTable的名称</param>
+            <returns>DataSet数据集和</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExeForDst(System.String)">
+            <summary>
+            执行一段SQL语句，返回DataSet结果集
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>DataSet结果集</returns>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            string pSql="";
+            DataSet pDst=new DataSet();
+            
+            //进行一些数据访问操作的代码
+            pSql="select * from YourTable";
+            
+            //执行此次数据操作
+            pDst=pComm.ExeForDst(pSql);
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>		
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExeForDtl(System.String,System.String)">
+            <summary>
+            执行SQL语句，返回DataTable
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="TableName">DataTable的名称</param>
+            <returns>DataTable的结果集</returns>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            string pSql="";
+            DataTable pDst=new DataTable();
+            
+            //进行一些数据访问操作的代码
+            pSql="select * from YourTable";
+            
+            //执行此次数据操作
+            pDst=pComm.ExeForDtl(pSql,"UserInfo");
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>			
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExeForDtl(System.String)">
+            <summary>
+            执行SQL语句，返回默认DataTable
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>DataTable结果集</returns>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            
+            //创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            
+            //开始一个事务
+            pComm.BeginTrans();
+            
+            string pSql="";
+            DataTable pDst=new DataTable();
+            
+            //进行一些数据访问操作的代码
+            pSql="select * from YourTable";
+            
+            //执行此次数据操作
+            pDst=pComm.ExeForDtl(pSql);
+            
+            //提交本次的事务
+            pComm.CommitTrans();
+            
+            //关闭数据库连结
+            pComm.Close();
+            </code>
+            </example>	
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExeForDtr(System.String)">
+            <summary>
+            执行SQL语句，返回IDataReader接口
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>IDataReader接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.GetCommand">
+            <summary>
+            返回IDbCommand接口
+            </summary>
+            <returns>IDbCommand接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.GetConn">
+            <summary>
+            返回IDbConnection接口
+            </summary>
+            <returns>IDbConnection接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.Open">
+            <summary>
+            打开一个数据连接
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.Close">
+            <summary>
+            关闭数据库连接
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExecuteNonQuery(System.String,System.String[],System.String[])">
+            <summary>
+            用来执行带有参数的SQL语句（不是存储过程）
+            </summary>
+            <param name="SQLText">带有参数的SQL语句</param>
+            <param name="Parameters">传递的参数列表</param>
+            <param name="ParametersValue">同参数列表对应的参数值列表</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExecuteSqls(System.String[])">
+            <summary>
+            执行多sql语句
+            </summary>
+            <param name="strSQLs">sql语句数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExeForFillDst(System.String,System.Data.DataSet,System.String)">
+            <summary>
+            执行一段SQL语句，返回DataSet结果集
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="pDS">指定DataSet</param>
+            <param name="pTableName">pTableName</param>
+            <returns>DataSet结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExecuteSP(System.String,System.String[],System.String[],System.String[])">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="StoredProcedureName">存储过程的名称</param>
+            <param name="Parameters">传递的参数列表</param>
+            <param name="ParametersValue">同参数列表对应的参数值列表</param>
+            <param name="ParametersType">同参数列表对应的参数类型列表</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExecuteSPForDtl(System.String,System.String[],System.Object[])">
+            <summary>
+            执行存储过程返回DataTable
+            </summary>
+            <param name="StoredProcedureName">存储过程名</param>
+            <param name="ParametersNames">数组参数名</param>
+            <param name="ParametersValue">数组参数值</param>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExecuteSP(System.String,System.String[],System.Object[])">
+            <summary>
+            执行存储过程返回bool
+            </summary>
+            <param name="StoredProcedureName">存储过程名</param>
+            <param name="ParametersNames">数组参数名</param>
+            <param name="ParametersValue">数组参数值</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonSql.ExcuteSp(System.String,System.String[0:,0:])">
+            <summary>
+             执行存储过程,得到结果集DataSet
+             </summary>
+             <param name="sqname">存储过程名称</param>
+             <param name="array">参数名称与值的数组</param>
+             <returns>返回True或False</returns>
+        </member>
+        <member name="T:Daniel.Liu.DAO.CommonData">
+            <summary>
+            作者：刘志彬(Daniel Liu)
+            作用：数据类型枚举。
+            日期：2005-04-24
+            </summary>
+        </member>
+        <member name="F:Daniel.Liu.DAO.CommonData.sql">
+            <summary>
+            以SQL Server方式
+            </summary>
+        </member>
+        <member name="F:Daniel.Liu.DAO.CommonData.oledb">
+            <summary>
+            以OLEDB方式
+            </summary>
+        </member>
+        <member name="F:Daniel.Liu.DAO.CommonData.Oracle">
+            <summary>
+            以oracle方式
+            </summary>
+        </member>
+        <member name="T:Daniel.Liu.DAO.CommonFactory">
+            <summary>
+            作者：刘志彬(Daniel Liu)
+            作用： 数据库访问工厂类。
+            日期：2005-04-24
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonFactory.CreateInstance(Daniel.Liu.DAO.CommonData)">
+            <summary>
+            创建一个数据访问接口
+            </summary>
+            <param name="CommonData_Parameter">数据访问类型</param>
+            <returns>CommonInterface接口</returns>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;
+            创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql);
+            </code>
+            </example>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonFactory.CreateInstance(Daniel.Liu.DAO.CommonData,System.String)">
+            <summary>
+            创建一个数据访问接口
+            </summary>
+            <param name="CommonData_Parameter">数据访问类型</param>
+            <param name="connstr">数据库的连接串</param>
+            <returns>CommonInterface接口</returns>
+            <example>示例：
+            <code>
+            using Daniel.Liu.DAO;	
+            string pConnectionString="";	
+            ConnectionDefaultStr = "server=grd4-daniel-liu;database=readsystem;uid=sa;pwd=liuandliu";
+            创建使用默认数据连接的SQL数据访问接口
+            CommonInterface pComm=CommonFactory.CreateInstance(CommonData.sql,pConnectionString);
+            </code>
+            </example>
+        </member>
+        <member name="T:Daniel.Liu.DAO.CommonOle">
+            <summary>
+            作者：刘志彬(Daniel Liu)
+            作用：OLEDB的数据库连结方式的类。
+            日期：2005-04-24
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.#ctor">
+            <summary>
+            默认的构造方法
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.#ctor(System.String)">
+            <summary>
+            带有参数的构造方法
+            </summary>
+            <param name="Connstr_Param">数据库连接字符串</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.Initial">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.BeginTrans">
+            <summary>
+            开始一个事务
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.CommitTrans">
+            <summary>
+            提交一个事务
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.RollbackTrans">
+            <summary>
+            回滚一个事务
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.Execute(System.String)">
+            <summary>
+            执行一条SQL语句
+            </summary>
+            <param name="sql"></param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExeForDst(System.String,System.String)">
+            <summary>
+            执行SQL语句，填充到指定的DataTable中，返回DataSet
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="strTable">DataTable的名称</param>
+            <returns>DataSet数据集和</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExeForDst(System.String)">
+            <summary>
+            执行一段SQL语句，返回DataSet结果集
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>DataSet结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExeForDtl(System.String,System.String)">
+            <summary>
+            执行SQL语句，返回DataTable
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="TableName">DataTable的名称</param>
+            <returns>DataTable的结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExeForDtl(System.String)">
+            <summary>
+            执行SQL语句，返回默认DataTable
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>DataTable结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExeForDtr(System.String)">
+            <summary>
+            执行SQL语句，返回IDataReader接口
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>IDataReader接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.GetCommand">
+            <summary>
+            返回IDbCommand接口
+            </summary>
+            <returns>IDbCommand接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.GetConn">
+            <summary>
+            返回IDbConnection接口
+            </summary>
+            <returns>IDbConnection接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.Open">
+            <summary>
+            打开一个数据连接
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.Close">
+            <summary>
+            关闭一个数据连接
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExecuteNonQuery(System.String,System.String[],System.String[])">
+            <summary>
+            用来执行带有参数的SQL语句（不是存储过程）
+            </summary>
+            <param name="SQLText">带有参数的SQL语句</param>
+            <param name="Parameters">传递的参数列表</param>
+            <param name="ParametersValue">同参数列表对应的参数值列表</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExecuteSqls(System.String[])">
+            <summary>
+            执行多sql语句
+            </summary>
+            <param name="strSQLs">sql语句数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExeForFillDst(System.String,System.Data.DataSet,System.String)">
+            <summary>
+            执行一段SQL语句，返回DataSet结果集
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="pDS">指定DataSet</param>
+            <param name="pTableName">pTableName</param>
+            <returns>DataSet结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExecuteSP(System.String,System.String[],System.String[],System.String[])">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="StoredProcedureName">存储过程的名称</param>
+            <param name="Parameters">传递的参数列表</param>
+            <param name="ParametersValue">同参数列表对应的参数值列表</param>
+            <param name="ParametersType">同参数列表对应的参数类型列表</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExecuteSPForDtl(System.String,System.String[],System.Object[])">
+            <summary>
+            执行存储过程返回DataTable
+            </summary>
+            <param name="StoredProcedureName">存储过程名</param>
+            <param name="ParametersNames">数组参数名</param>
+            <param name="ParametersValue">数组参数值</param>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExecuteSP(System.String,System.String[],System.Object[])">
+            <summary>
+            执行存储过程返回bool
+            </summary>
+            <param name="StoredProcedureName">存储过程名</param>
+            <param name="ParametersNames">数组参数名</param>
+            <param name="ParametersValue">数组参数值</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ExcuteSp(System.String,System.String[0:,0:])">
+            <summary>
+             执行存储过程,得到结果集DataSet
+             </summary>
+             <param name="sqname">存储过程名称</param>
+             <param name="array">参数名称与值的数组</param>
+             <returns>返回True或False</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOle.ReadExcelToDS(System.String)">
+            <summary>
+            读取Excel到DS
+            </summary>
+            <param name="Path">路径</param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="T:Daniel.Liu.DAO.ICommandBuilder">
+            <summary>
+            吴炜
+            对ado.net中各个数据库操作类型的CommandBuilder加一适配
+            
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.ICommandBuilder.SetDataAdapter(System.Data.IDataAdapter)">
+            <summary>
+            设置数据适配器
+            </summary>
+            <param name="da"></param>
+        </member>
+        <member name="T:Daniel.Liu.DAO.OracleCmdBuilder">
+            <summary>
+            oracle
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.OracleCmdBuilder.SetDataAdapter(System.Data.IDataAdapter)">
+            <summary>
+            
+            </summary>
+            <param name="da"></param>
+        </member>
+        <member name="T:Daniel.Liu.DAO.SqlCmdBuilder">
+            <summary>
+            sql的命令建造者适配对象
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.SqlCmdBuilder.SetDataAdapter(System.Data.IDataAdapter)">
+            <summary>
+            设置数据适配器
+            </summary>
+            <param name="da">sql数据适配器</param>
+        </member>
+        <member name="T:Daniel.Liu.DAO.OleDbCmdBuilder">
+            <summary>
+            oledb的命令建造者适配对象
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.OleDbCmdBuilder.SetDataAdapter(System.Data.IDataAdapter)">
+            <summary>
+            设置数据适配器
+            </summary>
+            <param name="da">oledb数据适配器</param>
+        </member>
+        <member name="T:Daniel.Liu.DAO.CommonOracle">
+            <summary>
+            作者：刘志彬(Daniel Liu)
+            作用：Oracle的数据库连结方式的类。
+            日期：2005-04-24
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.#ctor">
+            <summary>
+            默认的构造方法
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.#ctor(System.String)">
+            <summary>
+            带有参数的构造方法
+            </summary>
+            <param name="Connstr_Param">数据库连接字符串</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.Initial">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.BeginTrans">
+            <summary>
+            开始一个事务
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.CommitTrans">
+            <summary>
+            提交一个事务
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.RollbackTrans">
+            <summary>
+            回滚一个事务
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.Execute(System.String)">
+            <summary>
+            执行一条SQL语句
+            </summary>
+            <param name="sql"></param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExeForDst(System.String,System.String)">
+            <summary>
+            执行SQL语句，填充到指定的DataTable中，返回DataSet
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="strTable">DataTable的名称</param>
+            <returns>DataSet数据集和</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExeForDst(System.String)">
+            <summary>
+            执行一段SQL语句，返回DataSet结果集
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>DataSet结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExeForDtl(System.String,System.String)">
+            <summary>
+            执行SQL语句，返回DataTable
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="TableName">DataTable的名称</param>
+            <returns>DataTable的结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExeForDtl(System.String)">
+            <summary>
+            执行SQL语句，返回默认DataTable
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>DataTable结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExeForDtr(System.String)">
+            <summary>
+            执行SQL语句，返回IDataReader接口
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <returns>IDataReader接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.GetCommand">
+            <summary>
+            返回IDbCommand接口
+            </summary>
+            <returns>IDbCommand接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.GetConn">
+            <summary>
+            返回IDbConnection接口
+            </summary>
+            <returns>IDbConnection接口</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.Open">
+            <summary>
+            打开一个数据连接
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.Close">
+            <summary>
+            关闭一个数据连接
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExecuteNonQuery(System.String,System.String[],System.String[])">
+            <summary>
+            用来执行带有参数的SQL语句（不是存储过程）
+            </summary>
+            <param name="SQLText">带有参数的SQL语句</param>
+            <param name="Parameters">传递的参数列表</param>
+            <param name="ParametersValue">同参数列表对应的参数值列表</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExecuteSqls(System.String[])">
+            <summary>
+            执行多sql语句
+            </summary>
+            <param name="strSQLs">sql语句数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExeForFillDst(System.String,System.Data.DataSet,System.String)">
+            <summary>
+            执行一段SQL语句，返回DataSet结果集
+            </summary>
+            <param name="QueryString">SQL语句</param>
+            <param name="pDS">指定DataSet</param>
+            <param name="pTableName">pTableName</param>
+            <returns>DataSet结果集</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExecuteSP(System.String,System.String[],System.String[],System.String[])">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="StoredProcedureName">存储过程的名称</param>
+            <param name="Parameters">传递的参数列表</param>
+            <param name="ParametersValue">同参数列表对应的参数值列表</param>
+            <param name="ParametersType">同参数列表对应的参数类型列表</param>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExecuteSPForDtl(System.String,System.String[],System.Object[])">
+            <summary>
+            执行存储过程返回DataTable
+            </summary>
+            <param name="StoredProcedureName">存储过程名</param>
+            <param name="ParametersNames">数组参数名</param>
+            <param name="ParametersValue">数组参数值</param>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExecuteSP(System.String,System.String[],System.Object[])">
+            <summary>
+            执行存储过程返回bool
+            </summary>
+            <param name="StoredProcedureName">存储过程名</param>
+            <param name="ParametersNames">数组参数名</param>
+            <param name="ParametersValue">数组参数值</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExcuteSp(System.String,System.String[0:,0:])">
+            <summary>
+             执行存储过程,得到结果集DataSet
+             </summary>
+             <param name="sqname">存储过程名称</param>
+             <param name="array">参数名称与值的数组</param>
+             <returns>返回True或False</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.ExecuteScalar(System.String)">
+            <summary>
+            执行sql语句返回第一行第一列的值
+            </summary>
+            <param name="QueryString">sql查询语句</param>
+            <returns>返回任何类型的对像</returns>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.getDataAdapter(System.String)">
+            <summary>
+            getDataAdapter
+            </summary>
+        </member>
+        <member name="M:Daniel.Liu.DAO.CommonOracle.getCommandBuilder">
+            <summary>
+            getCommandBuilder
+            </summary>
+        </member>
+    </members>
+</doc>

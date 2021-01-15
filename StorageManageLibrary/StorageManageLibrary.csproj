@@ -1,0 +1,95 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E4FEECF7-DBC8-4DBA-B0D6-54D0F1471277}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StorageManageLibrary</RootNamespace>
+    <AssemblyName>StorageManageLibrary</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicData.cs" />
+    <Compile Include="BasicDataManage.cs" />
+    <Compile Include="Bill.cs" />
+    <Compile Include="BillAutoIDManage.cs" />
+    <Compile Include="BillDetail.cs" />
+    <Compile Include="BillManage.cs" />
+    <Compile Include="CheckBill.cs" />
+    <Compile Include="CheckBillDetail.cs" />
+    <Compile Include="CheckBillManage.cs" />
+    <Compile Include="Depot.cs" />
+    <Compile Include="DepotManage.cs" />
+    <Compile Include="Dept.cs" />
+    <Compile Include="DeptManage.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeManage.cs" />
+    <Compile Include="LoginUser.cs" />
+    <Compile Include="LoginUserManage.cs" />
+    <Compile Include="Material.cs" />
+    <Compile Include="MaterialManage.cs" />
+    <Compile Include="RemoveBill.cs" />
+    <Compile Include="RemoveBillDetail.cs" />
+    <Compile Include="RemoveBillManage.cs" />
+    <Compile Include="StorageClassManage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Supplier.cs" />
+    <Compile Include="SupplierManage.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="ClientManage.cs" />
+    <Compile Include="SysParams.cs" />
+    <Compile Include="UserRight.cs" />
+    <Compile Include="UserRightManage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAO\Daniel.Liu.DAO.csproj">
+      <Project>{CC0DBE40-88E7-4099-8E78-297DC46CB8B7}</Project>
+      <Name>Daniel.Liu.DAO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
